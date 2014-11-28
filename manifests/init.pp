@@ -3,25 +3,26 @@
 # Class to install and configure all the options for confd.toml
 #
 class confd(
-  $version     = $confd::params::version,
-  $installdir  = $confd::params::installdir,
-  $sitemodule  = $confd::params::sitemodule,
+  $version         = $confd::params::version,
+  $installdir      = $confd::params::installdir,
+  $sitemodule      = $confd::params::sitemodule,
 
-  $confdir     = $confd::params::confdir,
-  $backend     = undef,
-  $debug       = undef,
-  $client_cert = undef,
-  $client_key  = undef,
-  $consul      = undef,
-  $consul_addr = undef,
-  $etcd_nodes  = undef,
-  $etcd_scheme = undef,
-  $interval    = undef,
-  $confdnoop   = undef,
-  $prefix      = undef,
-  $quiet       = undef,
-  $srv_domain  = undef,
-  $verbose     = undef,
+  $confdir         = $confd::params::confdir,
+  $install_package = $confd::params::install_package,
+  $backend         = undef,
+  $debug           = undef,
+  $client_cert     = undef,
+  $client_key      = undef,
+  $consul          = undef,
+  $consul_addr     = undef,
+  $etcd_nodes      = undef,
+  $etcd_scheme     = undef,
+  $interval        = undef,
+  $confdnoop       = undef,
+  $prefix          = undef,
+  $quiet           = undef,
+  $srv_domain      = undef,
+  $verbose         = undef,
 
   $resources = {},
 
@@ -34,7 +35,7 @@ class confd(
   validate_absolute_path($confdir)
   validate_hash($resources)
 
-  if $backend { validate_re($backend, ['^etcd$', '^consul$']) }
+  if $backend { validate_re($backend, ['^etcd$', '^consul$', '^env$']) }
   if $debug { validate_bool($debug) }
   if $consul { validate_bool($consul) }
   if $consul_addr { validate_string($consul_addr) }

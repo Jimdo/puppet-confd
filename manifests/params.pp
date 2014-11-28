@@ -8,6 +8,7 @@ class confd::params {
   $version = 'latest'
   $user = 'root'
   $sitemodule = 'site_confd'
+  $install_package = true
 
   case $::osfamily {
     'Debian': {
